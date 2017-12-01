@@ -1,0 +1,142 @@
+<!-- -->
+<ion-header class="animated fadeIn no-shadow">
+
+  <ion-navbar class="no-border" color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <div ion-text class="icon-title text-white"></div>
+      <strong>Dashboard</strong>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button tappable (click)="presentNotifications($event)">
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+      <button ion-button tappable (click)="goToAccount()">
+        <ion-icon name="cog"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="animated fadeIn common-bg">
+  
+  <div class="booking-card marginB-16px">
+
+    <ion-grid class="card" col-md-8 col-lg-6>
+
+       <ion-list>
+          <ion-list-header>
+            <ion-icon name="stopwatch" item-start></ion-icon>
+            Feild Status   
+
+            <ion-badge class="square badge-right badge badge-md badge-md-primary" color="dark" item-end>
+              {{fieldStatus}}
+            </ion-badge>
+          </ion-list-header>
+          
+      </ion-list>
+   
+   </ion-grid>
+
+</div>
+
+
+ <div class="booking-card marginB-16px">
+
+    <ion-grid class="card" col-md-8 col-lg-6>
+
+       <ion-list>
+          <ion-list-header (click)="toggleGroup(1)">
+            <ion-icon name="star" item-start></ion-icon>
+            <ion-icon color="dark" item-right [name]="isGroupShown(1) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+              My teams 
+          </ion-list-header>
+          <div *ngIf="isGroupShown(1)">
+            <div *ngFor="let team of teams">
+              <ion-item (click)="messageTeam(team.title)" >{{team.title}}
+
+               <ion-icon name="text" item-right></ion-icon>
+              </ion-item>
+            </div>
+          </div>
+          
+      </ion-list>
+   
+   </ion-grid>
+
+</div>
+
+
+
+ <div class="booking-card marginB-16px">
+
+    <ion-grid class="card" col-md-8 col-lg-6>
+
+
+      <ion-list>
+          <ion-list-header (click)="toggleGroup(2)">
+            <ion-icon name="contacts" item-start></ion-icon>
+            <ion-icon color="dark" item-right [name]="isGroupShown(2) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+              My Players 
+          </ion-list-header>
+          <div *ngIf="isGroupShown(2)">
+           <ion-item *ngFor="let player of players">{{player.name}}</ion-item>
+
+          </div>
+          
+      </ion-list>
+
+   
+   </ion-grid>
+
+</div>
+
+
+<div class="booking-card marginB-16px">
+
+    <ion-grid class="card" col-md-8 col-lg-6>
+
+       <ion-list>
+          <ion-list-header (click)="toggleGroup(3)">
+            <ion-icon name="cash" item-start></ion-icon>
+            <ion-icon color="dark" item-right [name]="isGroupShown(3) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+              Invoices  
+          </ion-list-header>
+          <div *ngIf="isGroupShown(3)">
+           <ion-item *ngFor="let invoice of invoices">{{invoice.title}}:{{invoice.amount}}</ion-item>
+
+          </div>
+          
+      </ion-list>
+
+
+   </ion-grid>
+
+</div>
+
+
+<div class="booking-card marginB-16px">
+
+    <ion-grid class="card" col-md-8 col-lg-6>
+
+       <ion-list>
+          <ion-list-header>
+            <ion-icon name="calendar" item-start></ion-icon>
+              Calendar 
+            <button ion-button class="round" color="primary" margin-top full tappable (click)="openCalendar()" item-end>View Events</button>
+           </ion-list-header>
+          
+      </ion-list>
+   
+   </ion-grid>
+
+</div>
+
+ 
+ 
+
+
+</ion-content>

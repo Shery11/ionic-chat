@@ -1,0 +1,43 @@
+<ion-menu side="left" id="authenticated" [content]="content">
+  <ion-header>
+    <ion-toolbar class="user-profile">
+
+      <ion-fab top right>
+        <button ion-fab mini color="dark" menuClose>
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-fab>
+
+      <ion-grid>
+        <ion-row justify-content-center>
+          <ion-col padding-left padding-right padding-top col-auto>
+              <div class="user-avatar"></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row justify-content-center>
+          <ion-col padding-left padding-right padding-bottom text-center col-auto>
+            <h2 ion-text color="light" class="no-margin bold">
+              {{name}}
+            </h2>
+            <span ion-text color="secondary">{{email}}</span>
+            <div padding-top>
+            
+              <button ion-button icon-left small color="secondary" menuClose tappable (click)="logout()">
+                <ion-icon name="log-out"></ion-icon>
+                Log Out
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+    </ion-toolbar>
+  </ion-header>
+
+
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

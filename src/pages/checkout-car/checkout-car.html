@@ -1,0 +1,66 @@
+<!-- -->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Car Checkout</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="checkout-car common-bg">
+  <!--trip information-->
+  <div class="checkout-info car-info card round">
+    <div class="car-image border-bottom" [ngStyle]="{'background-image': 'url(' + car.thumb + ')'}"></div>
+    <ion-grid padding>
+      <ion-row>
+        <ion-col width-66>
+          <h5 ion-text color="dark" class="bold">{{ shop.name }}</h5>
+          <div>
+            <h6 ion-text color="primary">{{ car.name }}</h6>
+          </div>
+          <div margin-top>
+            <span ion-text>{{ dateFrom | date: 'MMM dd, h:mm' }} - {{ dateTo | date: 'MMM dd, h:mm' }}</span>
+            <br/>
+            <span ion-text>{{ car.address }}</span>
+          </div>
+          <div margin-top>
+
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <span ion-text color="dark">Total with Tax</span>
+          <h5 no-margin>{{ car.price | currency:'USD':true }}</h5>
+          <span ion-text color="dark">Due at pickup</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!--more info-->
+  <div class="card round" margin-top>
+    <ion-item class="no-border">
+      <ion-icon name="contact" item-left color="primary"></ion-icon>
+      <div>
+        <span class="bold" ion-text color="primary">Guest Details</span>
+        <br/>
+        <span ion-text>Enter your information</span>
+      </div>
+    </ion-item>
+  </div>
+
+  <!--payment info-->
+  <div class="card round" margin-top>
+    <ion-item class="no-border">
+      <ion-icon name="ios-card" item-left color="primary"></ion-icon>
+      <div>
+        <span class="bold" ion-text color="primary">Payment method</span>
+        <br/>
+        <span ion-text>Enter credit card</span>
+      </div>
+    </ion-item>
+  </div>
+
+  <!--submit button-->
+  <button ion-button class="round" color="primary" margin-top full tappable (click)="send()">SEND</button>
+</ion-content>

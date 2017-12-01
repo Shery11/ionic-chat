@@ -1,0 +1,51 @@
+<!-- -->
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="login-content">
+
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+      <h2 ion-text class="text-white" no-margin>
+        soccer<strong>Club</strong>
+      </h2>
+    </div>
+
+    <!-- Login form -->
+    <form [formGroup]="onLoginForm" class="list-form">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail" item-start class="text-white"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <p ion-text color="danger" class="text-1x has-error" *ngIf="onLoginForm.get('email').touched && onLoginForm.get('email').hasError('required')">This field is required</p>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-white"></ion-icon>
+          Password
+        </ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <p ion-text color="danger" class="text-1x has-error" *ngIf="onLoginForm.get('password').touched && onLoginForm.get('password').hasError('required')">This field is required</p>
+    </form>
+
+    <p text-right ion-text color="light" tappable (click)="forgotPass()"><strong>Forgot Password?</strong></p>
+
+    <div>
+      <button ion-button icon-start block color="dark" tappable (click)="login(onLoginForm.value)" [disabled]="!onLoginForm.valid">
+        <ion-icon name="log-in"></ion-icon>
+        SIGN IN
+      </button>
+
+    </div>
+
+
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="light" tappable (click)="register()">New here? <strong>Sign up</strong></span>
+    </div>
+
+  </div>
+</ion-content>

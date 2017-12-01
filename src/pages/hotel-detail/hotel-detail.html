@@ -1,0 +1,47 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{teamName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+
+  <div class="message-wrap">
+    <div *ngFor="let message of messages"
+     [class]="message.username == username ? 'message left' : 'message right'"
+    >
+      <img class="user-img" alt="" src="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-16.png">
+            
+        <div class="msg-detail">
+          <div class="msg-info">
+            <p>
+             {{ message.username }}
+            </p>
+           </div>
+          <div class="msg-content">
+             <span class="triangle"></span>
+              <p class="line-breaker ">{{ message.message }}</p>
+          </div>
+          <!-- <div class="messageContent">{{ message.time }}</div> -->
+          <!-- <ion-datetime class="username" displayFormat="MMM DD, h:mm A" [(ngModel)]="message.time"></ion-datetime> -->
+        </div>
+      
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div id="footer">
+      <div class="elem"><ion-textarea type="text" placeholder="Enter message here....." [(ngModel)]="message"></ion-textarea></div>
+      <div class="elem"><button ion-button icon-only (click)="sendMessage()"><ion-icon name="send"></ion-icon> </button></div>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+
+

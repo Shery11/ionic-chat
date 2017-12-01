@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>{{viewTitle}}</ion-title>
+        <ion-buttons end>
+            
+            <button ion-button (click)="changeMode('month')">M</button>
+            <button ion-button (click)="changeMode('week')">W</button>
+            <button ion-button (click)="changeMode('day')">D</button>
+           
+        </ion-buttons>
+        <!-- <ion-buttons end>
+          <button ion-button icon-only (click)="addEvent()">
+            <ion-icon name="add"></ion-icon>
+          </button>
+    </ion-buttons> -->
+        
+    </ion-navbar>
+</ion-header>
+
+<template #template let-view="view" let-row="row" let-col="col">
+      {{view.dates[row*7+col].label}}
+  </template>
+ 
+<ion-content class="has-header">
+    <calendar [eventSource]="eventSource"
+              [calendarMode]="calendar.mode"
+              [currentDate]="calendar.currentDate"
+              (onEventSelected)="onEventSelected($event)"
+              (onTitleChanged)="onViewTitleChanged($event)"
+              (onTimeSelected)="onTimeSelected($event)"
+              [monthviewDisplayEventTemplate]="template"
+              step="30">
+    </calendar>
+</ion-content>
