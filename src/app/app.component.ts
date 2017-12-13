@@ -4,11 +4,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
 import { LoginPage } from "../pages/login/login";
+import {HotelPage} from "../pages/hotel/hotel";
+import {AccountPage} from "../pages/account/account";
 
 import { Storage } from '@ionic/storage';
-
-
-import { HomePage } from "../pages/home/home";
 
 @Component({
   templateUrl: 'app.html'
@@ -26,11 +25,10 @@ export class MyApp {
     public keyboard: Keyboard,
     public storage : Storage
   ) {
+
     this.initializeApp();
 
-
-
-  }
+   }
 
 
   initializeApp() {
@@ -54,6 +52,15 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  openCalendar(){
+    this.nav.push(HotelPage);
+  }
+
+
+  openAccount(){
+    this.nav.push(AccountPage);
   }
 
   logout() {

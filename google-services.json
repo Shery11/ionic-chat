@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "641829195016",
+    "firebase_url": "https://test-ecf98.firebaseio.com",
+    "project_id": "test-ecf98",
+    "storage_bucket": "test-ecf98.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641829195016:android:50699beafc54190b",
+        "android_client_info": {
+          "package_name": "com.ionicframework.ionbooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641829195016-g4qv6hk0tl983acaoq1k16p91siqil8q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFjPXz1b6YaXP_kfj3-i2MArIt7O1SDAU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

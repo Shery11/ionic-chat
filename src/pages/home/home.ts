@@ -4,11 +4,13 @@ import {NotificationsPage} from "../notifications/notifications";
 import {AccountPage} from "../account/account";
 import {HttpServiceProvider} from "../../providers/http-service/http-service"
 import { Storage } from '@ionic/storage';
+import { AngularFireDatabase } from 'angularfire2/database'
 
-import {LoginPage} from "../login/login";
+
 import {HotelPage} from "../hotel/hotel";
 import {HotelDetailPage} from "../hotel-detail/hotel-detail";
 
+declare var FCMPlugin;
 
 
 
@@ -27,8 +29,9 @@ export class HomePage implements OnInit  {
   shownGroup = null;
 
 
-  constructor(public nav: NavController, public menuCtrl: MenuController, public toastCtrl: ToastController, public modalCtrl: ModalController, public popoverCtrl: PopoverController,public storage : Storage,public api : HttpServiceProvider) {
+  constructor(public nav: NavController, public menuCtrl: MenuController, public toastCtrl: ToastController, public modalCtrl: ModalController, public popoverCtrl: PopoverController,public storage : Storage,public api : HttpServiceProvider,public afd :AngularFireDatabase,) {
     this.menuCtrl.swipeEnable(true, 'authenticated');
+    
    }
 
 
@@ -36,7 +39,30 @@ export class HomePage implements OnInit  {
 
     }
 
+
+    ionViewDidLoad(){
+
+      console.log('entered');
+      
+
+           FCMPlugin.onNotification(function(data){
+              if(data.wasTapped){
+                //Notification was received on device tray and tapped by the user.
+                    alert( JSON.stringify(data) );
+                
+              }else{
+              
+              }
+          });
+
+        FCMPlugin.onTokenRefresh(function(token){
+          alert( token );
+        });
+
+  }
+
    ionViewCanEnter() {
+    
     console.log("in ionViewCanEnter");
 
 
@@ -51,6 +77,16 @@ export class HomePage implements OnInit  {
             this.teams = data.teams;
             this.invoices = data.invoices;
 
+            this.tokensetup().then((token)=>{
+        
+                this.storage.get('unique_id').then(val =>{
+              
+                this.storeToken(token,val,this.teams);
+               
+               })
+
+            });
+
             
 
             console.log(data);
@@ -63,7 +99,7 @@ export class HomePage implements OnInit  {
           },err=>{
             console.log(err);
             let toast = this.toastCtrl.create({
-              message: 'Invalid Email or password',
+              message: 'An error occured',
               duration: 3000,
               position: 'top',
               cssClass: 'dark-trans',
@@ -116,6 +152,39 @@ export class HomePage implements OnInit  {
     popover.present({
       ev: myEvent
     });
+  }
+
+
+   tokensetup(){
+
+    var promise = new Promise((resolve,reject)=>{
+
+    FCMPlugin.getToken(function(token){
+        resolve(token);
+       },(err)=>{
+         reject(err);
+       });
+    })
+
+    return promise;
+
+  }
+
+// also store team names with unique id
+  storeToken(token,id,teams){
+    
+    console.log(teams);
+
+    this.afd.list('/pushtokens').set(id,{
+
+      teams: teams,
+      devtoken: token
+
+
+    }).then(()=>{
+      // alert('Token stored');
+    })
+
   }
 
 }

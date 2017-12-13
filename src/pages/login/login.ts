@@ -76,6 +76,10 @@ export class LoginPage implements OnInit {
           console.log("User logged in");
           this.storage.set('sessionToken', data.sessiontoken );
           this.storage.set('unique_id', data.unique_id);
+          this.storage.set('email', data.email);
+          this.storage.set('first_name', data.first_name);
+          this.storage.set('last_name', data.last_name);
+          
           
           this.nav.setRoot(HomePage);
         }else{

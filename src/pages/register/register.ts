@@ -3,7 +3,6 @@ import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {NavController,LoadingController,ToastController} from "ionic-angular";
 
 import {LoginPage} from "../login/login";
-import {HomePage} from "../home/home";
 import {HttpServiceProvider} from "../../providers/http-service/http-service"
 
 

@@ -29,7 +29,7 @@ export class HotelDetailPage {
         console.log(val);
       });
 
-      this._chatSubscription = this.db.list('/'+this.teamName).valueChanges().subscribe( data => {
+      this._chatSubscription = this.db.list('/teams/'+this.teamName).valueChanges().subscribe( data => {
         console.log(data);
         this.messages = data;
         this.scrollToBottom();
@@ -41,10 +41,11 @@ export class HotelDetailPage {
      if( this.message !== ''){
 
      
-      this.db.list('/'+this.teamName).push({
+      this.db.list('/teams/'+this.teamName).push({
         username: this.username,
         message: this.message,
-        time : new Date().toISOString()
+        time : new Date().toISOString(),
+        teamName : this.teamName
       }).then( () => {
         // message is sent
       })
@@ -54,21 +55,7 @@ export class HotelDetailPage {
 
     }
 
-    ionViewDidLoad() {
-      // this.db.list('/chat').push({
-      //   specialMessage: true,
-      //   message: `${this.username} has joined the room`
-      // });
-    }
-
-    ionViewWillLeave(){
-      // this._chatSubscription.unsubscribe();
-      // this.db.list('/chat').push({
-      //   specialMessage: true,
-      //   message: `${this.username} has left the room`
-      // });
-    }
-
+    
       scrollToBottom() {
         setTimeout(() => {
             if (this.content.scrollToBottom) {

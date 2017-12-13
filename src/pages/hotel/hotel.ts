@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,ModalController,AlertController,ToastController  } from 'ionic-angular';
+import { NavController,AlertController,ToastController  } from 'ionic-angular';
 import * as moment from 'moment';
 
 import {HttpServiceProvider} from "../../providers/http-service/http-service"
@@ -29,7 +29,7 @@ export class HotelPage {
         currentDate: new Date()
     }; // these are the variable used by the calendar.
    
-  constructor(public navCtrl: NavController, private modalCtrl: ModalController, public toastCtrl: ToastController, private alertCtrl: AlertController,public storage : Storage,public api : HttpServiceProvider) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, private alertCtrl: AlertController,public storage : Storage,public api : HttpServiceProvider) {
  
      
       this.storage.get('events').then((val) => {
@@ -97,119 +97,13 @@ export class HotelPage {
     }
 
 
-  //  ionViewCanEnter() {
-  //   console.log("in ionViewCanEnter");
 
-
-  //    return new Promise((resolve, reject) => {    
-     
-  //      this.storage.get('sessionToken').then(val =>{
-  //         this.sessionToken = val;
-  //         console.log(this.sessionToken);
-  //         this.api.getDashboardData(this.sessionToken).map(res=>res.json()).subscribe(data=>{
-           
-  //           this.calendarEvents = data.calendar;
-  //           console.log(this.calendarEvents.length);
-
-             
-  //               for (var i = 0; i < this.calendarEvents.length; ++i) {
-
-  //                 console.log(this.calendarEvents[i]);
-  //                 console.log("running");
-  //                 this.loadEvents(this.calendarEvents[i]);
-  //               }
-                 
-
-
-  //                 setTimeout(() => {
-  //                   this.eventSource = this.events;
-  //                    resolve(data);
-  //                 },3000);
-            
-               
-  //         },err=>{
-  //           console.log(err);
-  //           let toast = this.toastCtrl.create({
-  //             message: 'An error occured',
-  //             duration: 3000,
-  //             position: 'top',
-  //             cssClass: 'dark-trans',
-  //             closeButtonText: 'OK',
-  //             showCloseButton: true
-  //           });
-  //           toast.present();
-  //           reject(err);
-  //         });
-  //     });
-
-
-  //   });
-
-  // }
-
-   
-
-   // loadEvents(data) {
-   //   // console.log(data);
-   //   console.log("In load events");
-
-   //    let startTime = data.start.split(" "); 
-   //    let endTime = data.end.split(" ");
-
-   //    startTime = moment( new Date(startTime[0])).format();
-   //    endTime = moment( new Date(endTime[0])).format();
-
-    
-   //    this.events.push({
-   //        title: data.title,
-   //        startTime:new Date(startTime),//new Date(startTime[0]),
-   //        endTime:new Date(endTime),//new Date(endTime[0]),
-   //        allDay: false
-   //    });
-
-   //    // this.eventSource = this.events;
-
-   //    // console.log(this.eventSource);
-   //  }
 
     changeMode(mode) {
         this.calendar.mode = mode;
     }
 
-  // addEvent() {
-  //   let modal = this.modalCtrl.create('EventModalPage', {selectedDay: this.selectedDay});
-  //   modal.present();
-    
-
-  //   modal.onDidDismiss(data => {
-  //     console.log(data)
-      
-  //     if (data) {
-  //       var dbData = {};
-  //       Object.assign(dbData,data)
-  //       let eventData = data;
-  //       // before
-  //       console.log(data.startTime);
-  //       console.log(data.endTime);
  
-  //       eventData.startTime = new Date(data.startTime);
-  //       eventData.endTime = new Date(data.endTime);
-  //       // after
-  //       console.log(eventData.startTime);
-  //       console.log(eventData.endTime);
-  //       console.log(eventData)
-  //       this.events.push(eventData);
-  //       this.eventSource = [];
-        
-       
-  //       setTimeout(() => {
-  //         this.eventSource = this.events;
-          
-  //         // this.db.list(this.path).push(dbData);
-  //       });
-  //     }
-  //   });
-  // }
  
   onViewTitleChanged(title) {
     this.viewTitle = title;
