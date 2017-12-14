@@ -9,22 +9,22 @@ import * as moment from 'moment';
 })
 export class EventModalPage {
  
-  event = { startTime: new Date().toISOString(), endTime: new Date().toISOString(), allDay: false };
-  minDate = new Date().toISOString();
+  event;
+  start;
+  end;
  
   constructor(public navCtrl: NavController, private navParams: NavParams, public viewCtrl: ViewController) {
-    let preselectedDate = moment(this.navParams.get('selectedDay')).format();
-    this.event.startTime = preselectedDate;
-    this.event.endTime = preselectedDate;
+    this.event= this.navParams.get('selectedDay')
+    console.log(this.event);
+
+    this.start = moment(this.event.startTime).format('LLLL');
+    this.end = moment(this.event.endTime).format('LLLL');
   }
  
   cancel() {
     this.viewCtrl.dismiss();
   }
  
-  save() {
-    console.log(this.event);
-    this.viewCtrl.dismiss(this.event);
-  }
+  
  
 }

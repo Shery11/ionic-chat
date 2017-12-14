@@ -1,6 +1,5 @@
 import {Component,OnInit} from "@angular/core";
 import {NavController, MenuController, ToastController,ModalController, PopoverController} from "ionic-angular";
-import {NotificationsPage} from "../notifications/notifications";
 import {AccountPage} from "../account/account";
 import {HttpServiceProvider} from "../../providers/http-service/http-service"
 import { Storage } from '@ionic/storage';
@@ -145,17 +144,7 @@ export class HomePage implements OnInit  {
     this.nav.push(AccountPage);
   }
 
-  presentNotifications(myEvent) {
-    console.log("Notification");
-    console.log(myEvent);
-    let popover = this.popoverCtrl.create(NotificationsPage);
-    popover.present({
-      ev: myEvent
-    });
-  }
-
-
-   tokensetup(){
+ tokensetup(){
 
     var promise = new Promise((resolve,reject)=>{
 

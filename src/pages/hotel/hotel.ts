@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,AlertController,ToastController  } from 'ionic-angular';
+import { NavController,ToastController,ModalController  } from 'ionic-angular';
 import * as moment from 'moment';
 
 import {HttpServiceProvider} from "../../providers/http-service/http-service"
@@ -29,12 +29,11 @@ export class HotelPage {
         currentDate: new Date()
     }; // these are the variable used by the calendar.
    
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, private alertCtrl: AlertController,public storage : Storage,public api : HttpServiceProvider) {
+  constructor(public navCtrl: NavController, private modalCtrl: ModalController, public toastCtrl: ToastController,public storage : Storage,public api : HttpServiceProvider) {
  
      
       this.storage.get('events').then((val) => {
-        console.log('Your age is', JSON.parse(val));
-
+      
         val = JSON.parse(val);
 
 
@@ -42,8 +41,7 @@ export class HotelPage {
 
             let data = val[i];
 
-            console.log(data);
-
+          
             let startTime = data.start.split(" "); 
             let endTime = data.end.split(" ");
 
@@ -56,8 +54,7 @@ export class HotelPage {
             sTime = sTime.split('T');
             eTime = eTime.split('T');
 
-            console.log(sTime,eTime);
-
+          
             startTime = moment( new Date(startTime[0])).format();
             endTime = moment( new Date(endTime[0])).format();
 
@@ -67,8 +64,6 @@ export class HotelPage {
             startTime = startTime[0]+'T'+sTime[1];
             endTime = endTime[0]+'T'+eTime[1];  
 
-            console.log(startTime);
-            console.log(endTime);
              
             this.events.push({
               location : data.location,
@@ -89,11 +84,7 @@ export class HotelPage {
 
       });
 
-      // this.e = [{startTime: "2017-11-25T12:00:00+05:00", endTime: "2017-11-25T12:00:00+05:00", allDay: false},{startTime: "2017-11-26T17:23:00+05:00", endTime: "2017-11-28T17:23:00+05:00", allDay: false}];
-
-      
-
-
+    
     }
 
 
@@ -112,16 +103,8 @@ export class HotelPage {
   onEventSelected(event) {
 
     console.log(event);
-
-    let start = moment(event.startTime).format('LLLL');
-    let end = moment(event.endTime).format('LLLL');
-    
-    let alert = this.alertCtrl.create({
-      title: '' + event.title,
-      subTitle: 'From: ' + start + '<br>To: ' + end,
-      buttons: ['OK']
-    })
-    alert.present();
+    let modal = this.modalCtrl.create('EventModalPage', {selectedDay: event});
+    modal.present();
   }
  
   onTimeSelected(ev) {

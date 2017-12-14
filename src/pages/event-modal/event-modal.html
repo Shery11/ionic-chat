@@ -11,27 +11,33 @@
  
 <ion-content>
   <ion-list>
+    <ion-item-divider color="dark">Title</ion-item-divider>
     <ion-item>
-      <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
+     {{event.title}}
+    </ion-item>
+    
+    <ion-item-divider color="dark">Location</ion-item-divider>
+    <ion-item>
+     {{event.location}}
+    </ion-item>
+
+    <ion-item-divider color="dark">Summary</ion-item-divider>
+    <ion-item>
+     {{event.summary}}
+    </ion-item>
+
+    <ion-item-divider color="dark">Start Time</ion-item-divider>
+    <ion-item>
+     {{start}}
     </ion-item>
  
+    <ion-item-divider color="dark">End Time</ion-item-divider>
     <ion-item>
-      <ion-label>Start</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
+     {{end}}
     </ion-item>
  
-    <ion-item>
-      <ion-label>End</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
-    </ion-item>
- 
-    <ion-item>
-      <ion-label>All Day?</ion-label>
-      <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
-    </ion-item>
+   
   </ion-list>
  
-  <button ion-button full icon-left (click)="save()">
-    <ion-icon name="checkmark"></ion-icon> Add Event
-  </button>
+ 
 </ion-content>

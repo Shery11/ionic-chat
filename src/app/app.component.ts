@@ -37,7 +37,9 @@ export class MyApp {
 
       //*** Control Splash Screen
       // this.splashScreen.show();
-      // this.splashScreen.hide();
+      this.splashScreen.hide();
+
+      
 
       //*** Control Status Bar
       this.statusBar.styleDefault();
